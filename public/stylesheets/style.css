@@ -1,0 +1,30 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.top {
+  text-align: center;
+  font-family: "Brush Script MT";
+  font-size: 100px;
+  color: darkgrey;
+}
+
+.count {
+  text-align: center;
+  font-family: "monaco";
+  font-size: 200px;
+  color: greenyellow;
+}
+
+.bottom {
+  text-align: center;
+  font-family: "Helvetica";
+  font-size: 60px;
+  color: darkgrey;
+}
