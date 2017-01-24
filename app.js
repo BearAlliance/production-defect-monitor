@@ -6,20 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
-const MongoClient = require('mongodb').MongoClient;
+var dao = require('./dbConnect');
 
 var app = express();
-var db;
-
-
-/**
- * Open mongo Connection
- */
-MongoClient.connect('mongodb://client:12345@ds117919.mlab.com:17919/production-defects', function(err, database) {
-  if (err) {return console.log(err);}
-  else { console.log('successful db connection');}
-  db = database;
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,36 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
-
-
-
-app.post('/setDays', function(req, res) {
-  console.log('POST manual set');
-  console.log(req.body);
-  db.collection('osha').insertOne(req.body, function(err, result) {
-    if(err) {
-      return console.log(err);
-    }
-    res.send(req.body);
-  });
-});
-
-app.post('/reset', function(req, res) {
-  console.log('POST reset');
-  console.log(req.body);
-  var rightNow = new Date();
-  var lastReset = {lastReset: rightNow};
-  db.collection('osha').updateONe({}, {$set: {lastReset:  rightNow}}, {}, function(err, result) {
-    if(err) {
-      return console.log(err);
-    }
-    res.send(req.body);
-  });
-});
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,5 +2,7 @@ extends layout
 
 block content
   p(class='top') It has been...
-  p(class='count') 6
+  p(class='count')= lastReset
   p(class='bottom') Days since our last production defect
+
+  p(class='footer') Created by Nick Cacace | reset: /reset | set: /setDays | get last reset: /lastReset
