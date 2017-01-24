@@ -2,15 +2,24 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: black;
+  color: darkgrey;
+
 }
 
 a {
   color: #00B7FF;
 }
 
-p {
-  color: darkgrey;
+.product-heading {
+  font-size: 30px;
 }
+
+.product-count {
+  color: greenyellow;
+  font-family: "monaco";
+  font-size: 20px;
+}
+
 .top {
   text-align: center;
   font-family: "Brush Script MT";
@@ -30,6 +39,7 @@ p {
   font-family: "Helvetica";
   font-size: 30px;
   color: darkgrey;
+  padding-bottom: 70px;
 }
 
 .footer {

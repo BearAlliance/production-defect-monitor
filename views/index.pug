@@ -1,8 +1,16 @@
 extends layout
 
 block content
-  p(class='top') It has been...
-  p(class='count')= lastReset
-  p(class='bottom') Days since our last production defect
+    p(class='top') It has been...
+    p(class='count')= diffs.global
+    p(class='bottom') Days since our last production defect
 
-  p(class='footer') Routes | reset: POST /reset | set: POST /setDays | get last reset: GET /lastReset
+    div(class='col-xs-12 col-sm-4 text-center product-heading') Pay
+    div(class='col-xs-12 col-sm-4 text-center product-heading') Time
+    div(class='col-xs-12 col-sm-4 text-center product-heading') Onboarding
+
+    div(class='col-xs-12 col-sm-4 text-center product-count')= diffs.pay
+    div(class='col-xs-12 col-sm-4 text-center product-count')= diffs.time
+    div(class='col-xs-12 col-sm-4 text-center product-count')= diffs.onboarding
+
+    p(class='footer') Routes | reset: POST /reset | set: POST /setDays | get last reset: GET /lastReset

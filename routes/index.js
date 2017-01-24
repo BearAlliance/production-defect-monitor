@@ -9,14 +9,14 @@ router.get('/',
   renderDashboard
 );
 
-
 router.post('/setDays',
+  DbService.setDaysForProduct,
   DbService.setDays
 );
 
 router.post('/reset',
-  DbService.resetLastReset,
-  DbService.sendResults
+  DbService.resetDaysForProduct,
+  DbService.resetDaysGlobal
 );
 
 router.get('/lastReset',
@@ -28,10 +28,15 @@ router.get('/lastReset',
 
 function renderDashboard(req, res, next) {
   var now = moment();
-  var lastReset = res.data.lastReset;
-  var difference = now.diff(lastReset, 'days');
-  console.log('difference', difference);
-  res.render('index', {title: 'OSHA', lastReset: difference});
+  var data = res.data;
+  var timeDifferences = {
+    global: now.diff(data.lastReset, 'days'),
+    pay: now.diff(data.pay.lastReset, 'days'),
+    time: now.diff(data.time.lastReset, 'days'),
+    onboarding: now.diff(data.onboarding.lastReset, 'days')
+  };
+
+  res.render('index', {title: 'OSHA', diffs: timeDifferences});
 }
 
 module.exports = router;

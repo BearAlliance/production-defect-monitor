@@ -1,3 +1,9 @@
-/**
- * Created by cacacen on 1/24/17.
- */
+var UtilsService = {
+  sanitizePostPayload: sanitizePostPayload
+};
+
+function sanitizePostPayload(req, res, next) {
+
+}
+
+module.exports = UtilsService;
