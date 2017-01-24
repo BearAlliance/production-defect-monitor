@@ -14,20 +14,25 @@ p {
 .top {
   text-align: center;
   font-family: "Brush Script MT";
-  font-size: 100px;
+  font-size: 50px;
   color: darkgrey;
 }
 
 .count {
   text-align: center;
   font-family: "monaco";
-  font-size: 200px;
+  font-size: 100px;
   color: greenyellow;
 }
 
 .bottom {
   text-align: center;
   font-family: "Helvetica";
-  font-size: 60px;
+  font-size: 30px;
   color: darkgrey;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
 }

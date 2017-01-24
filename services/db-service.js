@@ -17,6 +17,7 @@ function getLastReset(req, res, next) {
 }
 
 function setDays(req, res, next) {
+  console.log('POST manually set days');
   if (req.body.days) {
     var days = req.body.days;
 
@@ -24,7 +25,6 @@ function setDays(req, res, next) {
     console.log(updatedDate.format());
     dao.db.collection('osha').updateOne({lastReset: {$exists: true}}, {$set: {lastReset: updatedDate}}, function(err, result) {
       if (err) {
-        res.err = err;
         res.status(500).send(err);
       }
       else {
@@ -43,12 +43,11 @@ function resetLastReset(req, res, next) {
   var rightNow = moment();
   dao.db.collection('osha').updateOne({lastReset: {$exists: true}}, {$set: {lastReset: rightNow}}, function(err, result) {
     if (err) {
-      res.err = err;
+      res.status(500).send(err);
     }
     else {
-      res.data = result;
+      res.status(200).send(result);
     }
-    next();
   });
 }
 
