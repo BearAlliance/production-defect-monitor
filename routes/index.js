@@ -10,12 +10,12 @@ router.get('/',
 );
 
 router.post('/setDays',
-  DbService.setDaysForProduct,
+  DbService.setDaysForTeam,
   DbService.setDays
 );
 
 router.post('/reset',
-  DbService.resetDaysForProduct,
+  DbService.resetDaysForTeam,
   DbService.resetDaysGlobal
 );
 

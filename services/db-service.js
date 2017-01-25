@@ -6,8 +6,8 @@ var DbService = {
   sendResults: sendResults,
   resetDaysGlobal: resetDaysGlobal,
   setDays: setDays,
-  setDaysForProduct: setDaysForProduct,
-  resetDaysForProduct: resetDaysForProduct
+  setDaysForTeam: setDaysForTeam,
+  resetDaysForTeam: resetDaysForTeam
 };
 
 function getLastReset(req, res, next) {
@@ -18,13 +18,13 @@ function getLastReset(req, res, next) {
   });
 }
 
-function setDaysForProduct(req, res, next) {
-  console.log('POST manually set days for product');
-  if (req.body.product && req.body.days) {
+function setDaysForTeam(req, res, next) {
+  console.log('POST manually set days for team');
+  if (req.body.team && req.body.days) {
     var days = req.body.days;
-    var product = req.body.product;
+    var team = req.body.team;
     var updatedDate = moment().subtract(days, 'days');
-    var location = product + ".lastReset";
+    var location = team + ".lastReset";
     var query = {};
     query[location] = {$exists: true};
     var operation = {$set: {}};
@@ -44,6 +44,7 @@ function setDaysForProduct(req, res, next) {
   }
 }
 
+// Sets global days to the least of the three teams
 function setDays(req, res, next) {
   console.log('POST manually set days');
   if (req.body.days) {
@@ -64,10 +65,10 @@ function setDays(req, res, next) {
   }
 }
 
-function resetDaysForProduct(req, res, next) {
-  if(req.body.product) {
-    var product = req.body.product;
-    var location = product + ".lastReset";
+function resetDaysForTeam(req, res, next) {
+  if(req.body.team) {
+    var team = req.body.team;
+    var location = team + ".lastReset";
     var query = {};
     query[location] = {$exists: true};
     var operation = {$set: {}};

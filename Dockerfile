@@ -1,5 +1,10 @@
-FROM ubuntu:latest
+FROM node:alpine
 MAINTAINER NickCacace@gmail.com
-RUN apt-get update
 
-EXPOSE 80
+RUN mkdir -p /opt/osha
+
+ADD . /opt/osha
+
+WORKDIR /opt/osha
+RUN npm install
+EXPOSE 3000
